@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Box, Button, Divider,Flex, EditableTextarea, HStack, Input, Select, Spacer, Text, Textarea, VStack } from "@chakra-ui/react";
+import { Box, Button, Divider,Flex, EditableTextarea, HStack, Input, Select, Spacer, Text, Textarea, VStack, Grid } from "@chakra-ui/react";
 import { FaAngleDown, FaArrowAltCircleDown, FaCaretDown, FaCopy, FaDropbox, FaFileDownload, FaRegArrowAltCircleDown, FaSortDown, FaSun } from "react-icons/fa";
 
 
@@ -130,15 +130,28 @@ function App() {
     setLoading(false);
   }
 
+  const boxStyle = {
+    
+    height: '100vh',
+    background: 'linear-gradient(to right Top, white, #0d5fc2)',
+  };
   return (
-    <div>
-      <HStack ml={130} display={'flex'} >
-        <VStack w={580}>
-      <h1>Handwriting OCR</h1>
-      <input type="file" onChange={handleImageUpload} />
-      <button onClick={handleImageRecognition} disabled={!selectedImage || loading}>
+    <div height={"100vh"} bg={'#FFFFFF'} pt={5} >
+      <Grid templateColumns={{ base: '1fr', md: '3fr 3fr' }} rowGap={10} >
+        <Box height={"100vh"} bg={'#FFFFFF'} pt={200}  >
+          
+      <Text fontWeight="semibold" fontSize={60} textAlign='center' color={"#0073c7"} >Extract  Code </Text>
+      <Text fontWeight="semibold" fontSize={60} textAlign='center' color={"#0073c7"} mt={-5} >from Image </Text>
+      <VStack mt={12}>
+        
+        <Button h={67} w={307} fontSize={24} bg={'#0073c7'} color={'#fffffff'} borderRadius={50} onClick={() => document.getElementById('uploadInput').click() }>Upload Image</Button>
+      <input id="uploadInput" type="file" style={{ display: 'none' }} accept="image/*" />
+      <Text color={"#0073c7"} onClick={() => document.getElementById('uploadInput').click()} fontSize={24} cursor={'pointer'}><b><u>or drop a file</u></b></Text>
+
+
+      <Button onClick={handleImageRecognition} disabled={!selectedImage || loading}  h={67} w={307} fontSize={20} bg={'#0073c7'} color={'#fffffff'} borderRadius={50} >
         Recognize Handwriting
-      </button>
+      </Button>
       {loading && <p>Loading...</p>}
       {result && (
         <div>
@@ -147,31 +160,34 @@ function App() {
         </div>
       )}
       </VStack>
+      </Box>
+      
+      <Box height={"100vh"} bg={'#FFFFFF'} pt={20}>
 
-      <Box w="680px"  bg="#1D1E23" borderWidth={3}> 
-            <Box bg="#24262C" w="680px" h="50px" borderRadius={2} pt="5px" p={5} display='flex' justifyContent={"space-between"} alignItems={"center"}>
+      <Box w="680px"   borderWidth={3} bg="#F0F5FF" borderColor={"#0073c7"} borderRadius={15} pt={0}> 
+            <Box bg="#F0F5FF" borderBottomColor={"#0073c7"} borderWidth={2} w="676px" h="50px" borderRadius={15} borderBottomRadius={0} pt="5px" p={5} display='flex' justifyContent={"space-between"} alignItems={"center"} >
             
          
-            <Select placeholder={language}  w="162px"  h="31px" display={"flex"} color={"grey"} size={12} value="language" onChange={(e)=>setLanguage(e.target.value)}>
-            <option value="Java">Java</option>
+            <Select  placeholder={language} bg={"#F0F5FF"} borderWidth={2} borderColor={"#0073c7"}  w="162px"  h="31px" display={"flex"} color={"#0073c7"} size={12} value="language" onChange={(e)=>setLanguage(e.target.value)} borderRadius={9} >
+            <option value="Java"  >Java</option>
             <option value="Python">Python</option>
             <option value="C++">C++</option>
             <option value="Js">JS</option>
             <option value="C">C</option>
             </Select>
-            <Button h="30px" bg="#2EC866" borderRadius={4}  color="white" onClick={handleSubmitCode}>Run</Button>
+            <Button h="30px" bg="#0073c7" borderRadius={4}  color="white" onClick={handleSubmitCode}>Run</Button>
            
       
 
             </Box>
            
-            <Textarea value={code} placeholder="Enter Your Code Here" onChange={(event) => {setCode(event.target.value)}}  h="400px"w="650px" margin="10px"/>
+            <Textarea  style={{scrollbarColor: 'blue'}} color={"#0073c7"} bg={"white"} borderColor={"#0073c7"} borderRadius={30} borderWidth={2} value={code} placeholder="Enter Your Code Here" onChange={(event) => {setCode(event.target.value)}}  h="450px"w="650px" margin="10px"/>
             
           
            
             { Isthereiscode?<Box > 
              
-             <Box bg="#F8F8F8"  w="650px" margin="10px" display={loading?'none':'block'}  alignItems={"center"} p="10px">
+             <Box bg="#F0F5FF"  w="650px" margin="10px" display={loading?'none':'block'}  alignItems={"center"} p="10px">
                    <Flex align="center">
                         
              
@@ -182,12 +198,12 @@ function App() {
                     <Divider orientation={'vertical'} h="20px"/>
                     <Text fontSize={14} color={"white"}>Memory:<br/><span fontSize="24px" color="white">{memory} Mb</span></Text>
                 </HStack>
-                {error!==null?<Box bg="#F8F8F8"  w="100%" display={loading?'none':'block'}  alignItems={"center"} p="10px">
-                    <Text fontSize={16} color={"black"} fontWeight={'semibold'}>Error : </Text>
-                    <Text fontSize={20} color={"black"}  ml="10px">{error}</Text>
+                {error!==null?<Box bg="#F0F5FF"  w="100%" display={loading?'none':'block'}  alignItems={"center"} p="10px">
+                    <Text fontSize={16} color={"white"} fontWeight={'semibold'}>Error : </Text>
+                    <Text fontSize={20} color={"white"}  ml="10px">{error}</Text>
                 </Box>:<></>}
-                <Text visibility={loading?'hidden':'visible'} fontSize={24} ml="15px" color={"white"} >Output </Text>
-                <Box bg="#24262C" w="675px"  p="10px" borderLeftRadius={7} borderWidth={2}>
+                <Text visibility={loading?'hidden':'visible'} fontSize={24} ml="15px" color={"#0073c7"} >Output </Text>
+                <Box bg="#F0F5FF" w="675px"  p="10px" borderLeftRadius={7} borderWidth={2}>
                   {output === null ? <Text align={"left"} fontSize={16} >{'No Output'}</Text>:
                 <Text align={"left"} fontSize={16} >{loading?'Submission On Queue': output.split("\n").slice(0,3).map((line, index) => (
                         <React.Fragment key={index}>
@@ -203,8 +219,8 @@ function App() {
                 </Box>
                 {/* </Link> */}
                 </Box>:
-               <Box bg="#24262C" h="50px" w="675px" mt="30px" pt="0px" borderLeftRadius={7} borderWidth={2}>
-                <Text align={"center"} mt="10px">{'WA Failed Test Cases is available for this problem'}</Text>
+               <Box bg="#F0F5FF" h="53px" w="676px" mt="30px" pt="0px" borderBottomRadius={11} borderWidth={2} borderTopColor={"#0073c7"} >
+                <Text align={"center"} mt="10px" color={"#0073c7"}>{'This Code contains Error !!!'}</Text>
             </Box>}
             {/* button to submit cod */}
          
@@ -216,10 +232,11 @@ function App() {
          
             
             </Box>
+            </Box>
 
 
 
-      </HStack>
+      </Grid>
     </div>
   );
 }

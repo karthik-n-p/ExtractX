@@ -14,7 +14,7 @@ export default function Landing() {
   const userid=localStorage.getItem('uid')
   console.log("local storage get uid",userid)
   return (
-    <Box  w="100vw" h="100vh">
+    <Box  w="100vw" h="80vh">
 
           {isRegistered?<Profile/>:<Landingcards/>}
 

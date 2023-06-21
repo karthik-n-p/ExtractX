@@ -26,47 +26,45 @@ const Header = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const boxStyle = {
+    pos: "static",
+    top: "0",
+    width: "100%",
+    zIndex: "20", 
+    background: '#F0F5FF'
+  };
   
 
   return (
-    <Box pos="static" display="flex" top="0" width="100%" zIndex={20}>
+    <Box style={boxStyle}  >
       <Flex align="center">
         {/* Logo */}
-        <HStack alignItems="center" justify="center" width="300px" height="80px" ml={'80px'}>
-          <Image src={Logo} alt="Logo" mr="-7px" mt="px" width="60px" height="60px" />
-          <Heading fontWeight="bold" color="txtw" fontSize="3xl" p="40px 65px 35px 0px">
-            CodeSpace
+        <HStack alignItems="center" justify="center" width="300px" height="80px" ml={'100px'}>
+           <Image src={Logo} alt="Logo" mr="-7px" mt="px" width="60px" height="60px" /> 
+          <Heading fontWeight="bold" color="#0073c7" fontSize="3xl" p="40px 65px 35px 0px">
+            CodeExtract
           </Heading>
         </HStack>
 
         {/* Search bar */}
-        <Box ml="50px">
-          <InputGroup>
-            <Input display="flex" placeholder="Search" width={{ base: "350px", md: "650px" }} ml="45px" h="50px" bg="#494853" borderWidth="0px" />
-            <InputRightElement mt="5px">
-              <FaSearch size="25px" color="grey2" />
-            </InputRightElement>
-          </InputGroup>
-        </Box>
+      
         <Spacer />
+        <Spacer/>
 
         {shouldRenderOtherElements && (
           <>
-            <Box>
-              <Circle bg="#32313B" mx={7} onClick={toggleColorMode} cursor="pointer">
-                <IconButton icon={<FaSun size="25px" />} w="45px" h="45px" borderRadius="100px" color="yellow" bg="#32313B" size="md" aria-label="Toggle theme" />
-              </Circle>
-            </Box>
+            
 
-            <Flex alignItems="center" gap="5px"  onClick={handleToggleDropdown} cursor={'pointer'}>
+            <Box right={0} w="300px" h={10} alignItems="right"   onClick={handleToggleDropdown} cursor={'pointer'} > 
+            <HStack spacing={0}>
               {isRegistered &&
               <IconButton
                 icon={<FaUser size="25px" />}
                 w="45px"
                 h="45px"
                 borderRadius="100px"
-                color="btng"
-                bg="#32313B"
+                color="#ffffff"
+                bg="#0073c7"
                 size="md"
                 mr="5px"
               
@@ -79,7 +77,7 @@ const Header = () => {
                     fontSize="13px"
                     letterSpacing={'1px'}
                     lineHeight={"13px"}
-                    fontWeight={'400'}
+                    fontWeight={'600'}
                     fontStyle={'normal'}
                     fontFamily={'Poppins'}
                    
@@ -91,45 +89,42 @@ const Header = () => {
            
                  
                 </Flex>
+                
               ) : (
                 <></>
               )}
-            </Flex>
+              </HStack>
+            </Box>
 
           </>
         )}
-               {isRegistered ? (
-              <IconButton
-
-                icon={<FaBell size="25px" />}
-                w="45px"
-                h="45px"
-                borderRadius="100px"
-                color="btng"
-                bg="#32313B"
-                size="md"
-                mx={'30px'}
-              />
-            ) : (
-              <></>
-            )}
+              
              {isDropdownOpen && <ProfileSection  handleToggleDropdown={handleToggleDropdown}/>}
           
-        <Box>
-          <HStack spacing={2}>
+        <Box pl={2}>
+          <HStack spacing={1}>
             <>
            
 
+              
+            {path !== '/about' && (
+                <Link to="/about">
+                  <Button color="#ffffff" bg="#0073c7" ml="30px" >
+                    About
+                  </Button>
+                </Link>
+              )}
+              
               {path !== '/login' && !isRegistered && (
                 <Link to="/login">
-                  <Button color="black" bg="btng" ml="30px" >
+                  <Button color="#ffffff" bg="#0073c7"ml="30px" >
                     Login
                   </Button>
                 </Link>
               )}
                  {path !== '/signup' && !isRegistered && (
                 <Link to="/signup">
-                  <Button color="black" bg="white" mx="5">
+                  <Button color="#ffffff" bg="#0073c7" ml="30px">
                     SignUp
                   </Button>
                 </Link>
