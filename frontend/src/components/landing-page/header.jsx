@@ -36,10 +36,10 @@ const Header = () => {
   
 
   return (
-    <Box style={boxStyle}  >
+    <Box style={boxStyle} pos={'fixed'} >
       <Flex align="center">
         {/* Logo */}
-        <HStack alignItems="center" justify="center" width="300px" height="80px" ml={'100px'}>
+        <HStack alignItems="center" justify="center" width="300px" height="60px" ml={'100px'}>
            <Image src={Logo} alt="Logo" mr="-7px" mt="px" width="60px" height="60px" /> 
           <Heading fontWeight="bold" color="#0073c7" fontSize="3xl" p="40px 65px 35px 0px">
             CodeExtract
@@ -102,18 +102,12 @@ const Header = () => {
              {isDropdownOpen && <ProfileSection  handleToggleDropdown={handleToggleDropdown}/>}
           
         <Box pl={2}>
-          <HStack spacing={1}>
+          <HStack spacing={0} mr={10}>
             <>
            
 
               
-            {path !== '/about' && (
-                <Link to="/about">
-                  <Button color="#ffffff" bg="#0073c7" ml="30px" >
-                    About
-                  </Button>
-                </Link>
-              )}
+            
               
               {path !== '/login' && !isRegistered && (
                 <Link to="/login">

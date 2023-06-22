@@ -117,12 +117,12 @@ const App = () => {
             </div>
             <Routes>
               <Route path="/" element={<QuestionPage />} />
+              <Route path="/practice" element={<PracQues />}/>
               {/* <Route path="/login" element={<LoginPage handleSignupSuccess={handleSignupSuccess} />} />
               <Route path= "/signup" element={<SignUpPage handleSignupSuccess={handleSignupSuccess} />} />
               <Route path= '/profile' element={<Profile/>}/>
               <Route path=  "/chat" element={<Chatbot/>}/>
               <Route path=  "/chat" element={<Chatbot/>}/>
-              <Route path="/practice" element={<PracQues />}/>
               <Route path= "/question" element={<QuestionPage />} />
               <Route path="/resource" element={<ResourcePage />} />
               <Route path= "/competition" element={<CompFun />} />

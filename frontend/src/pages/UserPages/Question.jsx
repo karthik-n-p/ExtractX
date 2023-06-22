@@ -181,7 +181,7 @@ function App() {
 
             </Box>
            
-            <Textarea  style={{scrollbarColor: 'blue'}} color={"#0073c7"} bg={"white"} borderColor={"#0073c7"} borderRadius={30} borderWidth={2} value={code} placeholder="Enter Your Code Here" onChange={(event) => {setCode(event.target.value)}}  h="450px"w="650px" margin="10px"/>
+            <Textarea  style={{scrollbarColor: 'blue'}} color={"#0073c7"} bg={"white"} borderColor={"white"} borderRadius={30} borderWidth={2} value={code} placeholder="Enter Your Code Here" onChange={(event) => {setCode(event.target.value)}}  h="450px"w="650px" margin="10px"/>
             
           
            
