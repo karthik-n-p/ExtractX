@@ -31,14 +31,14 @@ const Header = () => {
     top: "0",
     width: "100%",
     zIndex: "20", 
-    background:"white"
+    background:"#F0F5FF"
   
   };
   
 
   return (
    
-    <Box style={boxStyle} pos={'fixed'} >
+    <Box style={boxStyle} pos={'fixed'}  >
       <Flex align="center">
         {/* Logo */}
         <HStack alignItems="center" justify="center" width="300px" height="60px" >

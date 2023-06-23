@@ -139,11 +139,13 @@ function App() {
              
               )}
               <Button
-                colorScheme="facebook"
+                colorScheme="blue"
+                cursor={'pointer'}
                 bg="brand.100"
                 as="label"
                 htmlFor="imageUpload"
                 mb={4}
+                pt={2}
                 display="block"
               >
                 {selectedImage ? 'Change Image' : 'Upload Image'}

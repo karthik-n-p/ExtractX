@@ -1,6 +1,6 @@
 import React from 'react'
 import { createUserWithEmailAndPassword ,signInWithPopup,GoogleAuthProvider,getAuth} from 'firebase/auth';
-import  { Box, Flex,Divider, Spacer, IconButton, Input, InputGroup, InputRightElement, Circle, useColorMode, Avatar, Button, HStack, Image,Heading,Text } from '@chakra-ui/react';
+import  { Box, Flex,Divider, Spacer, IconButton, Input, InputGroup, InputRightElement, Circle, useColorMode, Avatar, Button, HStack, Image,Heading,Text, Grid } from '@chakra-ui/react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { auth,firestore } from './firebase-auth';
 import { useNavigate } from 'react-router-dom';
@@ -79,13 +79,16 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
 
   return (
     <>
-    <Box w="800px" height={"100%"}   position={"relative"} top="60px"
-          left="400px" display={'flex'} flexDirection={'row'}>
-                <Flex direction={"column"}>
-                <Heading fontStyle={"normal"} fontWeight={"bold"} color="" fontSize="5xl" p="40px 65px 35px 0px">
+    <Box bg={'white'} >
+    <Box  height="100vh"   position={"relative"} mt={6}
+          ml={{ base: '10px' , md: '300px' }} display={'flex'} flexDirection={'row'}>
+                <Grid templateColumns={{ base: '1fr', md: '3fr 3fr' }} bg={"white"} pt={0} pl={{base: '100px', md:"0px"}} >
+                  <HStack>
+                    <div>
+                <Heading fontStyle={"normal"} fontWeight={"bold"} color="#0073c7" fontSize="5xl" p="40px 65px 35px 0px">
                       Sign Up
                     </Heading>
-                  <Box display={'flex'} alignItems={'center'} justifyContent={'space-evenly'}  w="250px" h="45px" bg="#444857" borderRadius="4px" cursor={'pointer'} onClick={handleGoogleSignIn}>
+                  <Box display={'flex'} alignItems={'center'} justifyContent={'space-evenly'}  w="250px" h="45px" bg="#0073c7" borderRadius="4px" cursor={'pointer'} onClick={handleGoogleSignIn}>
                     <FaGoogle size="25px" />
                     <Text color="white" fontSize="md" lineHeight={"18px"}>
                       Sign Up with Google
@@ -94,12 +97,12 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
                   </Box>
                
 
-                  <Text fontSize={"md"} fontWeight={"400"} m="25px 0 10px 0">How social log in works</Text>
+                  <Text fontSize={"md"} color="txtg" fontWeight={"400"} m="25px 0 10px 0">How social log in works</Text>
                   <Text w="300px" h="130px" color="txtg" fontSize={'sm'}>By signing up, you agree to CodeSpace Terms of Service , Code of Conduct , and Privacy Policy .</Text>
-  
-    </Flex>
-    <Box mt="100px" ml="55px" display="flex" flexDirection={'column'} alignItems="center" justifyContent="center">
+</div>
+                  <Box mt="100px" ml="55px" display="flex" flexDirection={'column'} alignItems="center" justifyContent="center">
   <Divider orientation="vertical" h="140px" borderColor="#9B9DAD" />
+  
   <Box display={'flex'} alignItems={'center'} justifyContent={'center'} mx="2" w="45px" h="50px" border="1px solid #9B9DAD" borderRadius="10px" textAlign="center">
     <Text fontSize="xl" fontWeight="bold" color="#9B9DAD">
       OR
@@ -107,26 +110,30 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
   </Box>
   <Divider orientation="vertical" h="140px" borderColor="#9B9DAD" />
 </Box>
+         </HStack>      
+         <Flex ml="70px" direction={"column"} justifyContent={'center'}>
+      <Text color={"#0073c7"}>Username</Text>
+      <Input placeholder="Username"  w="350px" color={"#0073c7"} h="45px" bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterUsername(event.target.value)}} />
+      <Text mt="10px" color={"#0073c7"}>Email</Text>
+      <Input placeholder="Email" w="350px" h="45px" color={"#0073c7"} bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterEmail(event.target.value)}} />
+      <Text mt="10px" color={"#0073c7"}>Password</Text>
+      <Input placeholder="Password" w="350px" h="45px" color={"#0073c7"} bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterPassword(event.target.value)}}  />
+      <Button w="350px" h="45px" color="white" borderRadius="4px" mt="20px" bg="#0073c7" onClick={register}>Sign Up</Button>
+
+    
+
+    </Flex>
+    </Grid>
+    
 
 
    
 
   
-    <Flex ml="70px" direction={"column"} justifyContent={'center'}>
-      <Text>Username</Text>
-      <Input placeholder="Username" w="350px" h="45px" bg="#444857" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterUsername(event.target.value)}} />
-      <Text mt="10px">Email</Text>
-      <Input placeholder="Email" w="350px" h="45px" bg="#444857" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterEmail(event.target.value)}} />
-      <Text mt="10px">Password</Text>
-      <Input placeholder="Password" w="350px" h="45px" bg="#444857" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterPassword(event.target.value)}}  />
-      <Button w="350px" h="45px" bg="#2EC866" borderRadius="4px" mt="20px" color="white" onClick={register}>Sign Up</Button>
-
     
 
-    </Flex>
-
     </Box>
-   
+    </Box>
   
     </>
   )

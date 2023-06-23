@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Box, Flex, Divider, Text, Input, Button, Heading,Alert,AlertIcon } from '@chakra-ui/react';
+import { Box, Flex, Divider, Text, Input, Button, Heading,Alert,AlertIcon, HStack, Grid } from '@chakra-ui/react';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { getAuth, signInWithEmailAndPassword,sendPasswordResetEmail,signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useNavigate,Link} from 'react-router-dom';
@@ -130,21 +130,19 @@ const checkAdmin = async (user) => {
 
   return (
     <>
-      <Box display="flex" flexDirection="column" gap="150px">
-        <Box
-          w="800px"
-          height="100%"
-          position="relative"
-          top="60px"
-          left="400px"
-          display="flex"
-          flexDirection="row"
-        >
+    <Box bg={'white'}>
+      <Box display="flex" flexDirection="column" gap="150px" bg={"white"} h="100vh" pt={{base:'0', md:'150px'}}>
+      <Grid templateColumns={{ base: '1fr', md: '3fr 3fr' }} bg={"white"} pt={0} pl={{base: '100px', md:"0px"}} >
+        <HStack pl={{base: '0', md:'300'}}>
+          <div>
+        
+          
+          
           <Flex direction="column">
-            <Heading fontStyle="normal" fontWeight="bold" fontSize="5xl" p="40px 65px 35px 0px">
+            <Heading fontStyle="normal" fontWeight="bold" fontSize="5xl" p="40px 65px 35px 0px" color={"#0073c7"}>
               Log In
             </Heading>
-            <Box display="flex" alignItems="center" justifyContent="space-evenly" w="300px" h="45px" bg="#444857" borderRadius="4px" cursor={'pointer'} onClick={handleGoogleSignIn}>
+            <Box display="flex" alignItems="center" justifyContent="space-evenly" w="300px" h="45px" bg={'#0073c7'} borderRadius="4px" cursor={'pointer'} onClick={handleGoogleSignIn}>
               <FaGoogle size="25px" />
               <Text color="white" fontSize="md" lineHeight="18px" >
                 Log In with Google
@@ -155,12 +153,14 @@ const checkAdmin = async (user) => {
               How social log in works
             </Text>
             <Text w="300px" h="130px" color="txtg" fontSize="sm">
-              If the email address associated with your social account matches the email address of your CodeSpace
+              If the email address associated with your social account matches the email address of your Code Extract
               account, you'll be Signed Up. You aren't locked to any particular social account. Questions? contact
               support.
             </Text>
           </Flex>
-          <Box mt="100px" ml="55px" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+          </div>
+          <div>
+          <Box mt="100px" ml="px" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
             <Divider orientation="vertical" h="140px" borderColor="#9B9DAD" />
             <Box display="flex" alignItems="center" justifyContent="center" mx="2" w="45px" h="50px" border="1px solid #9B9DAD" borderRadius="10px" textAlign="center">
               <Text fontSize="xl" fontWeight="bold" color="#9B9DAD">
@@ -169,12 +169,15 @@ const checkAdmin = async (user) => {
             </Box>
             <Divider orientation="vertical" h="140px" borderColor="#9B9DAD" />
           </Box>
-          <Flex ml="70px" direction="column" justifyContent="center">
-            <Text mt="10px">Email</Text>
-            <Input ref={emailRef} placeholder="Email" w="350px" h="45px" bg="#444857" borderRadius="4px" mt="10px" />
-            <Text mt="10px">Password</Text>
-            <Input ref={passwordRef} placeholder="Password" type="password" w="350px" h="45px" bg="#444857" borderRadius="4px" mt="10px" />
-            <Button type="submit" w="350px" h="45px" bg="#2EC866" borderRadius="4px" mt="20px" color="white" onClick={handleLogin}>
+          </div>
+          </HStack>
+          <div>
+          <Flex ml="0px" mt={100} direction={"column"} justifyContent={'center'}>
+            <Text mt="10px" color={"#0073c7"}>Email</Text>
+            <Input ref={emailRef} borderColor={"#0073c7"} placeholder="Email" w="350px" h="45px" bg="#F0F5FF" borderRadius="4px" mt="10px" />
+            <Text mt="10px" color={"#0073c7"}>Password</Text>
+            <Input ref={passwordRef} placeholder="Password" type="password" borderColor={"#0073c7"} w="350px" h="45px" bg="#F0F5FF" borderRadius="4px" mt="10px" />
+            <Button type="submit" w="350px" h="45px" bg="#0073c7" borderRadius="4px" mt="20px" color="white" onClick={handleLogin}>
               Log In
             </Button>
             {error && <Text mt="10px"color="red">{error}* </Text>}
@@ -191,17 +194,22 @@ const checkAdmin = async (user) => {
             </Alert>
           )}
 
-            <Text textAlign="center" mt="25px" fontSize="sm" color="#76DAFF" cursor={'pointer'} onClick={handleForgotPassword} >
+          <Text textAlign="center" ml={-400} mt="25px" fontSize="sm" color="#76DAFF" cursor={'pointer'} onClick={handleForgotPassword} >
               Forgot Password?
-            </Text>
-          </Flex>
-        </Box>
+          </Text>
+          
+        
+        
+          
         <Link to='/signup'>
-        <Text textAlign="center" ml="250px" mt="55px" fontSize="sm" color="#76DAFF">
+        <Text textAlign="center" ml="-400px" mt="0px" fontSize="sm" color="#76DAFF">
           
           Don't have an account? <Text as="u" color="#76DAFF">Sign Up</Text>
         </Text>
-        </Link>
+        </Link></Flex>
+        </div>
+        </Grid>
+      </Box>
       </Box>
     </>
   );
