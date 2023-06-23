@@ -38,7 +38,7 @@ const theme = extendTheme({
     semibold: 'Poppins-SemiBold',
   },
   colors: {
-    bg: '#1F1D2B',
+    bg: '#fff',
     btng: '#2EC866',
     grey2: '#718096',
     white: '#FFFFFF',

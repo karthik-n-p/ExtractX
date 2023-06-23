@@ -9,7 +9,7 @@ function App() {
   const [result, setResult] = useState('');
   const [custominput, setCustominput] = useState('');
   const [outputFormat, setOutputFormat] = useState('');
-  const [code, setCode] = useState(false);
+  const [code, setCode] = useState('');
   const [output, setOutput] = useState('');
   const [status, setStatus] = useState('');
   const [time, setTime] = useState('');
@@ -222,11 +222,9 @@ function App() {
                 </Box>
               </Box>
             ) : (
-              <Box bg="#F0F5FF" h="53px" w="676px" mt="30px" pt="0px" borderBottomRadius={11} borderWidth={2} borderTopColor={"white"} >
-                <Flex bg="#F0F5FF" w="676px" pt="5px" p={5} justifyContent={"space-between"} >
-                  <Textarea bg={"white"} borderColor={"white"} borderRadius={30} borderWidth={2} placeholder="Enter Custom Input (Optional)" h="32px" w="565px" display={"flex"} color={"#0073c7"} size={14} value={custominput} onChange={(event) => { setCustominput(event.target.value) }} />
-                  <Textarea bg={"white"} borderColor={"white"} borderRadius={30} borderWidth={2} placeholder="Enter Expected Output (Optional)" h="32px" w="100px" display={"flex"} color={"#0073c7"} size={14} value={outputFormat} onChange={(event) => { setOutputFormat(event.target.value) }} />
-                </Flex>
+              <Box bg="#F0F5FF" h="53px" w="676px" mt="30px" pt="0px" display={'flex'} alignItems={'center'} justifyContent={'center'} borderBottomRadius={11} borderWidth={2} borderTopColor={"white"} >
+                <Text color={'black'}>Scan the image and press run</Text>
+               
               </Box>
             )}
           </Box>

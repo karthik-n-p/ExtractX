@@ -37,6 +37,7 @@ const Header = () => {
   
 
   return (
+   
     <Box style={boxStyle} pos={'fixed'} >
       <Flex align="center">
         {/* Logo */}
@@ -47,11 +48,17 @@ const Header = () => {
 
         {/* Search bar */}
       
+      
         <Spacer />
+        <Spacer/>
         <Spacer/>
 
         {shouldRenderOtherElements && (
           <>
+            
+
+            <Box right={0} w="300px" h={10} alignItems="right"   onClick={handleToggleDropdown} cursor={'pointer'} > 
+            <HStack spacing={0}>
             
 
             <Box right={0} w="300px" h={10} alignItems="right"   onClick={handleToggleDropdown} cursor={'pointer'} > 
@@ -64,6 +71,8 @@ const Header = () => {
                 borderRadius="100px"
                 color="#ffffff"
                 bg="#0073c7"
+              
+           
                 size="md"
                 mr="5px"
               
@@ -77,6 +86,7 @@ const Header = () => {
                     letterSpacing={'1px'}
                     lineHeight={"13px"}
                     fontWeight={'600'}
+                  
                     fontStyle={'normal'}
                     fontFamily={'Poppins'}
                    
@@ -89,9 +99,12 @@ const Header = () => {
                  
                 </Flex>
                 
+                
               ) : (
                 <></>
               )}
+              </HStack>
+            </Box>
               </HStack>
             </Box>
 
@@ -104,20 +117,19 @@ const Header = () => {
           <HStack spacing={0} mr={10}>
             <>
            
-
               
             
               
               {path !== '/login' && !isRegistered && (
                 <Link to="/login">
-                  <Button color="#ffffff" bg="#0073C7"ml="30px" >
+                  <Button color="black" bg='#0073C7' ml="30px" >
                     Login
                   </Button>
                 </Link>
               )}
                  {path !== '/signup' && !isRegistered && (
                 <Link to="/signup">
-                  <Button color="#ffffff" bg="#0073C7" ml="30px">
+                  <Button color="black" border={'1px solid #0073C7'} mx="5">
                     SignUp
                   </Button>
                 </Link>

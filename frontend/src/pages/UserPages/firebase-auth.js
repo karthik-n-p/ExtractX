@@ -2,9 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
 import firebaseConfig from "./config";
-
 
 // Your web app's Firebase configuration
 
