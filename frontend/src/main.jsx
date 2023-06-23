@@ -8,7 +8,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { auth, firestore } from './pages/UserPages/firebase-auth';
 import PracQuest from './pages/UserPages/Practice';
 import QuestionPage from './pages/UserPages/Question';
-import { ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 
 import Landing from './pages/UserPages/Landing';
 import Sidebar from './components/landing-page/Navbar';
@@ -112,32 +112,13 @@ const App = () => {
         <BrowserRouter>
           <ChakraProvider theme={theme}>
             <div>
-              <Sidebar />
-              <Header />
+              <Header/>
             </div>
+        
             <Routes>
-              <Route path="/" element={<QuestionPage />} />
-              {/* <Route path="/login" element={<LoginPage handleSignupSuccess={handleSignupSuccess} />} />
-              <Route path= "/signup" element={<SignUpPage handleSignupSuccess={handleSignupSuccess} />} />
-              <Route path= '/profile' element={<Profile/>}/>
-              <Route path=  "/chat" element={<Chatbot/>}/>
-              <Route path=  "/chat" element={<Chatbot/>}/>
-              <Route path="/practice" element={<PracQues />}/>
-              <Route path= "/question" element={<QuestionPage />} />
-              <Route path="/resource" element={<ResourcePage />} />
-              <Route path= "/competition" element={<CompFun />} />
-              <Route path= "/compdesc/:competitionId" element={<CompDesc />} />
-              <Route path= "/compques/:competitionId" element={<CompQuesPage />} />
-              <Route path="/question/:competitionId/:questionId" element={<QuestionPage/>} />
-
-
-              <Route path="/admin" element={isadmin ? <AdminDashboard /> : <Unauthorized />} />
-              <Route path="/admincompetition" element={isadmin ? <Admincomp /> : <Unauthorized />} />
-              <Route path="/createcomp" element={isadmin ? <CreateCompetitionForm /> : <Unauthorized />} />
-              <Route path="/adminquestion/:competitionId" element={isadmin ? <Adminquestion /> : <Unauthorized />} />
-              <Route path="/createques/:competitionId" element={isadmin ? <CreateQuestionForm /> : <Unauthorized />} />
-              <Route path="/editques/:competitionId/:questionId" element={isadmin ? <EditQuestionForm /> : <Unauthorized />} />
-              <Route path="/editcomp/:competitionId" element={isadmin ? <EditContest /> : <Unauthorized />} /> */}
+              <Route path='/convert' element={<QuestionPage />} />
+              <Route path="/" element={<Landing />} />
+             
             </Routes>
           </ChakraProvider>
         </BrowserRouter>
