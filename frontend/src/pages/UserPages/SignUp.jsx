@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword ,signInWithPopup,GoogleAuthProvider,getA
 import  { Box, Flex,Divider, Spacer, IconButton, Input, InputGroup, InputRightElement, Circle, useColorMode, Avatar, Button, HStack, Image,Heading,Text, Grid } from '@chakra-ui/react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { auth,firestore } from './firebase-auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link} from 'react-router-dom';
 
 
 import { doc, setDoc,getDoc } from 'firebase/firestore';
@@ -35,8 +35,9 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
                 email: user.email,
                 // Add other user data properties as needed
               };
+              navigate('/convert')
       
-              navigate('/');
+             
               handleSignupSuccess(userData);
             }
           }
@@ -66,10 +67,12 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
       };
       await setDoc(doc(firestore, "username", user.uid), userData);
     }
-
+    navigate('/convert')
+      
+   
     // Perform the necessary actions upon successful sign-in
     handleSignupSuccess();
-    navigate('/');
+    
   } catch (error) {
     console.log("Google sign-in failed:", error);
   }

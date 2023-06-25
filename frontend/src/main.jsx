@@ -52,8 +52,7 @@ const theme = extendTheme({
 const App = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [username, setUsername] = useState('');
-  const [isadmin, setIsadmin] = useState(false);
-
+ 
   useEffect(() => {
     const storedAuthData = localStorage.getItem('authData');
    
@@ -62,16 +61,16 @@ const App = () => {
       console.log("authData",authData)
       setIsRegistered(true);
       setUsername(authData.username);
-      setIsadmin(authData.isadmin);
+     
     }
   }, []);
 
   const handleSignupSuccess = async (userdata, isAdmin) => {
-    setIsadmin(isAdmin);
+ 
 
     try {
       const user = auth.currentUser;
-      const isadmin = isAdmin;
+     
       if (user) {
         const userDoc = await getDoc(doc(firestore, 'username', user.uid));
         if (userDoc.exists()) {
@@ -92,8 +91,7 @@ const App = () => {
   const afterlogout = () => {
     setIsRegistered(false);
     setUsername('');
-    setIsadmin(false);
-
+   
     localStorage.removeItem('authData');
   };
 
@@ -101,7 +99,7 @@ const App = () => {
     <React.StrictMode>
       <AuthContext.Provider
         value={{
-          isadmin: isadmin,
+         
           isRegistered: isRegistered,
           setIsRegistered: setIsRegistered,
           username: username,

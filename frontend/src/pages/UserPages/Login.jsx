@@ -17,45 +17,7 @@ const LoginPage = ({ handleSignupSuccess }) => {
   // showing login failed error after entering wrong credentials
   const [error, setError] = React.useState(null);
   const [resetPasswordMessage, setResetPasswordMessage] = React.useState('');
-  const [isadmin, setIsadmin] = React.useState(false);
-
-const checkAdmin = async (user) => {
-   
-    const uid=user.uid;
-    console.log(uid);
-    //post request to backend to check if user is admin or not using axios passing uid as parameter
-    axios.post('http://localhost:3000/admin-status', {uid})
-    .then((response) => {
-      console.log("check admin status",response.data.isAdmin);
-      if(response.data){
-        setIsadmin(response.data.isAdmin);
-        
-      }
-      if(response.data.isAdmin){
-        handleSignupSuccess(user,response.data.isAdmin)
-      
-          navigate('/admin')
-
-      }
-      else{
-        handleSignupSuccess(user,response.data.isAdmin)
-     
-        navigate(-1)
-
-      }
-    }
-    )
-    .catch((error) => {
-      console.log(error);
-    }
-    );
-
-    
-
-    
-    
  
-};
 
 
   const handleLogin = async (event) => {
@@ -72,8 +34,9 @@ const checkAdmin = async (user) => {
         username: email,
         // Add other user data properties as needed
       };
-      // Redirect the user to the desired page upon successful login
-      checkAdmin(auth.currentUser)
+
+      navigate('/convert')
+      
      
       
      
@@ -117,10 +80,10 @@ const checkAdmin = async (user) => {
       
       };
    
-    
+      navigate('/convert')
 
      
-      checkAdmin(user);
+   
     } catch (error) {
       console.log('Google sign-in failed', error);
     }
@@ -174,9 +137,9 @@ const checkAdmin = async (user) => {
           <div>
           <Flex ml="0px" mt={100} direction={"column"} justifyContent={'center'}>
             <Text mt="10px" color={"#0073c7"}>Email</Text>
-            <Input ref={emailRef} borderColor={"#0073c7"} placeholder="Email" w="350px" h="45px" bg="#F0F5FF" borderRadius="4px" mt="10px" />
+            <Input ref={emailRef} borderColor={"#0073c7"} color={"#0073c7"} placeholder="Email" w="350px" h="45px" bg="#F0F5FF" borderRadius="4px" mt="10px" />
             <Text mt="10px" color={"#0073c7"}>Password</Text>
-            <Input ref={passwordRef} placeholder="Password" type="password" borderColor={"#0073c7"} w="350px" h="45px" bg="#F0F5FF" borderRadius="4px" mt="10px" />
+            <Input ref={passwordRef} placeholder="Password" color={"#0073c7"} type="password" borderColor={"#0073c7"} w="350px" h="45px" bg="#F0F5FF" borderRadius="4px" mt="10px" />
             <Button type="submit" w="350px" h="45px" bg="#0073c7" borderRadius="4px" mt="20px" color="white" onClick={handleLogin}>
               Log In
             </Button>
