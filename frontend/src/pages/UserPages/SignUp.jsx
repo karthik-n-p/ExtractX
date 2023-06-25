@@ -36,7 +36,7 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
                 // Add other user data properties as needed
               };
       
-              navigate('/');
+              navigate('/convert');
               handleSignupSuccess(userData);
             }
           }
@@ -79,7 +79,7 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
 
   return (
     <>
-    <Box bg={'white'} >
+   <Box bg={'white'} >
     <Box  height="100vh"   position={"relative"} mt={6}
           ml={{ base: '10px' , md: '300px' }} display={'flex'} flexDirection={'row'}>
                 <Grid templateColumns={{ base: '1fr', md: '3fr 3fr' }} bg={"white"} pt={0} pl={{base: '100px', md:"0px"}} >
@@ -97,8 +97,8 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
                   </Box>
                
 
-                  <Text fontSize={"md"} color="txtg" fontWeight={"400"} m="25px 0 10px 0">How social log in works</Text>
-                  <Text w="300px" h="130px" color="txtg" fontSize={'sm'}>By signing up, you agree to CodeSpace Terms of Service , Code of Conduct , and Privacy Policy .</Text>
+                  <Text fontSize={"md"} color="blackAlpha.700" fontWeight={"400"} m="25px 0 10px 0">How social log in works</Text>
+                  <Text w="300px" h="130px" color="blackAlpha.600" fontSize={'sm'}>By signing up, you agree to CodeSpace Terms of Service , Code of Conduct , and Privacy Policy .</Text>
 </div>
                   <Box mt="100px" ml="55px" display="flex" flexDirection={'column'} alignItems="center" justifyContent="center">
   <Divider orientation="vertical" h="140px" borderColor="#9B9DAD" />
@@ -118,7 +118,7 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
       <Input placeholder="Email" w="350px" h="45px" color={"#0073c7"} bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterEmail(event.target.value)}} />
       <Text mt="10px" color={"#0073c7"}>Password</Text>
       <Input placeholder="Password" w="350px" h="45px" color={"#0073c7"} bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterPassword(event.target.value)}}  />
-      <Button w="350px" h="45px" color="white" borderRadius="4px" mt="20px" bg="#0073c7" onClick={register}>Sign Up</Button>
+      <Button w="350px" h="45px" colorScheme='blue' color="white" borderRadius="4px" mt="20px" bg="#0073c7" onClick={register}>Sign Up</Button>
 
     
 
@@ -134,6 +134,7 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
 
     </Box>
     </Box>
+   
   
     </>
   )

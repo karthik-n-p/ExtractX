@@ -36,6 +36,7 @@ const LoginPage = ({ handleSignupSuccess }) => {
       };
 
       navigate('/convert')
+      handleSignupSuccess(userData);
       
      
       
@@ -79,7 +80,7 @@ const LoginPage = ({ handleSignupSuccess }) => {
         username: email.substring(0, email.lastIndexOf('@')),
       
       };
-   
+      handleSignupSuccess(userData);
       navigate('/convert')
 
      

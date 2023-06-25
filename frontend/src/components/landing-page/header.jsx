@@ -8,10 +8,14 @@ import { useContext } from 'react';
 import AuthContext from '../../pages/UserPages/AuthContext';
 import { MdArrowDropDown, MdOutlineArrowDropDown, MdPinDrop } from 'react-icons/md';
 import ProfileSection from '../signup-page/Dropdown';
+import { auth } from '../../pages/UserPages/firebase-auth';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Header = () => {
   const { setIsRegistered } = useContext(AuthContext);
+  const { handleSignupSuccess,afterlogout } = useContext(AuthContext);
   const { isRegistered, username } = React.useContext(AuthContext);
   console.log("authcontext ", isRegistered);
   const { colorMode, toggleColorMode } = useColorMode(); // Hook to get color mode (light or dark) and toggle function
@@ -31,18 +35,39 @@ const Header = () => {
     top: "0",
     
     zIndex: "20", 
-    background:"#FFFFFF"
+    background:"#FFFFFF",
+    boxShadow: "inner",
+
   
+  };
+
+
+  const handleLogout = () => {
+    const navigate = useNavigate();
+    auth
+      .signOut()
+      .then(() => {
+        console.log('Logged out');
+      
+        handleSignupSuccess(null);
+        handleToggleDropdown();
+        afterlogout();
+        navigate('/');
+        // Additional logout actions if needed
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   
 
   return (
    
-    <Box style={boxStyle} pos={'fixed'} width='100%'>
+    <Box style={boxStyle} pos={'fixed'} width='100%' >
       <Flex align="center">
         
         <Link to={'/'}><HStack alignItems="center" justify="center" width={{md:"300px",base:'100px'}} height="60px" >
-        <Image src={Logo} w={20}/>
+    
         <Text color={'black'} fontSize={24} fontWeight={600}>Code</Text>
         <Text color={'black'} fontSize={24} fontWeight={300}>Extract</Text>
         </HStack></Link>
@@ -63,57 +88,19 @@ const Header = () => {
             
 
             <Box right={0} w="300px" h={10} alignItems="right"   onClick={handleToggleDropdown} cursor={'pointer'} > 
-            <HStack spacing={0}>
-              {isRegistered &&
-              <IconButton
-                icon={<FaUser size="25px" />}
-                w="45px"
-                h="45px"
-                borderRadius="100px"
-                color="#ffffff"
-                bg="#0073c7"
-              
-           
-                size="md"
-                mr="5px"
-              
-              />
-}
-              {isRegistered ? (
-                <Flex gap="10px">
-                  <Text
-                    color="white"
-                    fontSize="13px"
-                    letterSpacing={'1px'}
-                    lineHeight={"13px"}
-                    fontWeight={'600'}
-                  
-                    fontStyle={'normal'}
-                    fontFamily={'Poppins'}
-                   
-                    
-                  >
-                    {username}
-                  </Text>
-                  <FaChevronDown size="15px" color="#808191" />
-           
-                 
-                </Flex>
-                
-                
-              ) : (
-                <></>
-              )}
-              </HStack>
+            
             </Box>
               </HStack>
             </Box>
 
           </>
         )}
-              
-             {isDropdownOpen && <ProfileSection  handleToggleDropdown={handleToggleDropdown}/>}
-          
+
+             {isRegistered&&
+             <Button  w="100px" h="40px" color="white" bg="#0d5fc2" onClick={handleLogout}>
+                   Log Out
+                 </Button>
+}
         <Box pl={2}>
           <HStack spacing={0} mr={10}>
             <>
@@ -128,6 +115,9 @@ const Header = () => {
                   </Button>
                 </Link>
               )}
+           
+
+
                  {path !== '/signup' && !isRegistered && (
                 <Link to="/signup">
                   <Button color="black" border={'1px solid #0073C7'} mx="5">

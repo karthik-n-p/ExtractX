@@ -38,7 +38,7 @@ export default function Dropdown({handleToggleDropdown }) {
         borderRadius={'15px'}
         
         borderWidth={2}
-        bg="whiteAlpha.900"
+        bg="#F0F5FF"
         w="210px"
         h="270px"
         display={'flex'}
@@ -46,7 +46,7 @@ export default function Dropdown({handleToggleDropdown }) {
         alignItems={'center'}
         justifyContent={'center'}
         gap="5px"
-        zIndex="100"
+        zIndex="1000"
       >
         <IconButton
           icon={<FaUser size="25px" />}
@@ -57,11 +57,11 @@ export default function Dropdown({handleToggleDropdown }) {
           bg="#0d5fc2"
           size="md"
         />
-        <Text color="white" fontSize={'md'}>
+        <Text color="Black" fontSize={'md'}>
           {username}
         </Text>
         {auth.currentUser && auth.currentUser.email && (
-          <Text color="whiteAlpha.600" fontSize={'12px'} mb="10px">
+          <Text color="black" fontSize={'12px'} mb="10px">
             {isRegistered?auth.currentUser.email: ''}
           </Text>
         )}

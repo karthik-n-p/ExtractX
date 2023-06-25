@@ -4,14 +4,13 @@ import computer from '../../assets/Programming-cuate.png'
 import Instruction1 from '../../assets/Image folder-cuate.png'
 import Instruction2 from '../../assets/Image upload-cuate.png'
 import Instruction3 from '../../assets/Code snippets-cuate.png'
-import Instruction4 from '../../assets/Image folder-bro.png'
 import Instruction5 from '../../assets/Mention-cuate.png'
 import { useEffect } from "react";
 import { FaArrowDown, FaArrowLeft, FaArrowUp, FaChevronCircleDown, FaSearch } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 import { ButtonGroup, Container } from '@chakra-ui/react'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
 
@@ -23,6 +22,7 @@ const ContactForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    
   
     const handleSubmit = (e) => {
       e.preventDefault();

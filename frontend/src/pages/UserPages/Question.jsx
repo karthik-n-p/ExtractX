@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Box, Button, Divider, Flex, EditableTextarea, HStack, Input, Select, Spacer, Text, Textarea, VStack, Grid, Image, Spinner } from "@chakra-ui/react";
-import { FaAngleDown, FaArrowAltCircleDown, FaCaretDown, FaCopy, FaDropbox, FaFileDownload, FaRegArrowAltCircleDown, FaSortDown, FaSun } from "react-icons/fa";
-
+import { FaAngleDown, FaArrowAltCircleDown, FaCaretDown, FaCopy, FaDropbox, FaFileDownload, FaRegArrowAltCircleDown, FaSortDown, FaSun, FaUpload } from "react-icons/fa";
+import Instruction1 from '../../assets/Image folder-cuate.png'
+            
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -24,13 +25,11 @@ function App() {
   };
 
   const handleImageRecognition = async () => {
-    setLoading(true);
+    setloading1(true);
     const formData = new FormData();
     formData.append('srcImg', selectedImage);
 // delay the loading by 10 seconds
-    setTimeout(() => {
-      setLoading(true );
-    }, 10000);
+  
     try {
       const response = await axios.post('http://localhost:3000/recognize', formData, {
         headers: {
@@ -43,7 +42,7 @@ function App() {
       console.error(error);
     }
 
-    setLoading(false);
+    setloading1(false);
   };
 
   const scanningAnimationStyle = {
@@ -112,8 +111,24 @@ function App() {
       });
   };
 
+  function getLanguageId(language) {
+    console.log("Language is ",language);
+    // Map language to language ID
+    switch (language) {
+      case "Java":
+        return 62;
+      case "Python":
+        return 70;
+      case "C++":
+        return 54;
+      case "C":
+        return "50";
+  // Default to C++
+    }
+  }
+
   return (
-    <div height={"100vh"} bg={'#FFFFFF'} pt={5}>
+    <div  bg={'#FFFFFF'} pt={5}>
       <style>
         {`
        @keyframes scan {
@@ -126,29 +141,36 @@ function App() {
       }
       `}
       </style>
-      <Grid templateColumns={{ base: '1fr', md: '3fr 3fr' }} rowGap={10}>
-        <Box height={"100vh"} bg={'#FFFFFF'} pt={200}>
-          <Text fontWeight="semibold" fontSize={60} textAlign='center' color={"#0073c7"} >Extract Code</Text>
-          <Text fontWeight="semibold" fontSize={60} textAlign='center' color={"#0073c7"} mt={-5} >from Image</Text>
+      <Flex w={'100vw'} bg={'#FFFFFF'} h={'100vh'} justifyContent={'space-around'}>
+        <Box bg={'#FFFFFF'} pt={170}>
+          <Text fontWeight="semibold" fontSize={50} textAlign='center' color={"black"} lineHeight={"60px"} mb={5}>Upload Image </Text>
           <VStack>
-            <h1>Handwriting OCR</h1>
-            <Box position="relative">
+         
+            <Box position="relative" display={'flex'} flexDirection={'column'} alignItems="center" justifyContent="center" bg={'#F0F5FF'} borderRadius="10px"  boxShadow={' rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'} w="400px" h="100%" p={10} >
+            <Image src={Instruction1} alt="Image" mt="-35px" h="200px" w="200px" display={selectedImage && 'none'} />
               {selectedImage && (
                
-                  <Image src={URL.createObjectURL(selectedImage)} alt="Selected Image" width="400px" height="200px" border={'1px solid black'} />
+                  <Image src={URL.createObjectURL(selectedImage)} alt="Selected Image" width="400px" height="200px" m={5} border={'1px solid black'} />
              
               )}
+
+            
               <Button
                 colorScheme="blue"
                 cursor={'pointer'}
-                bg="brand.100"
+                bg="#0073C7"
+                color={"white"} 
                 as="label"
                 htmlFor="imageUpload"
-                mb={4}
-                pt={2}
-                display="block"
+                display={'flex'}
+                alignItems={'center'}
+                justifyContent={'space-between'}
+                gap={2}
+              
+               
               >
-                {selectedImage ? 'Change Image' : 'Upload Image'}
+                 <FaUpload color="white" size={20} />
+                {selectedImage ? '  Change Image' : '  Upload Image'}
                 <Input
                   id="imageUpload"
                   type="file"
@@ -156,46 +178,45 @@ function App() {
                   onChange={handleImageUpload}
                 />
               </Button>
-              {loading && (
+
+            
+         
+              {loading1 && (
                 <div style={scanningAnimationStyle} className="scanning-animation">
                   <div style={scanningLineStyle} className="scanning-line"></div>
                 </div>
               )}
             </Box>
-            <Button
+            {selectedImage && <Button
               colorScheme="blue"
-              bg="brand.100"
+              bg="#0073C7"
+              color={"white"} 
+              mt={5}
+             
               onClick={handleImageRecognition}
               disabled={!selectedImage || loading}
             >
               Recognize Handwriting
             </Button>
+}
             {loading && <p>Loading...</p>}
           </VStack>
         </Box>
-        <Box height={"100vh"} bg={'#FFFFFF'} pt={20}>
-          <Box w="680px" borderWidth={3} bg="#F0F5FF" borderColor={"#0073c7"} borderRadius={15} pt={0}>
+        <Box  bg={'#FFFFFF'} pt={20}>
+          <Box w="680px" h="580px" borderWidth={3} bg="#F0F5FF" borderColor={"#0073c7"} borderRadius={15} pt={0}>
             <Box bg="#F0F5FF" borderBottomColor={"#0073c7"} borderWidth={2} w="676px" h="50px" borderRadius={15} borderBottomRadius={0} pt="5px" p={5} display='flex' justifyContent={"space-between"} alignItems={"center"} >
               <Select placeholder={language} bg={"#F0F5FF"} borderWidth={2} borderColor={"#0073c7"} w="162px" h="31px" display={"flex"} color={"#0073c7"} size={12} value="language" onChange={(e) => setLanguage(e.target.value)} borderRadius={9} >
                 <option value="Java">Java</option>
                 <option value="Python">Python</option>
                 <option value="C++">C++</option>
-                <option value="Js">JS</option>
                 <option value="C">C</option>
+               
               </Select>
               <Button h="30px" bg="#0073c7" borderRadius={4} color="white" onClick={handleSubmitCode}>Run</Button>
             </Box>
-            <Textarea style={{ scrollbarColor: 'blue' }} color={"#0073c7"} bg={"white"} borderColor={"white"} borderRadius={30} borderWidth={2} value={code} placeholder="Enter Your Code Here" onChange={(event) => { setCode(event.target.value) }} h="450px" w="650px" margin="10px" />
+            <Textarea style={{ scrollbarColor: 'blue' }} color={"#0073c7"} bg={"white"} borderColor={"white"} borderRadius={15} borderWidth={2} value={code} placeholder="Enter Your Code Here" onChange={(event) => { setCode(event.target.value) }} h="400px" w="650px" margin="10px" />
             {Isthereiscode ? (
-              <Box>
-                <Box bg="#F0F5FF" w="650px" margin="10px" display={loading ? 'none' : 'block'} alignItems={"center"} p="10px">
-                  <Flex align="center"></Flex>
-                </Box>
-                <HStack m="20px" gap="10px" display={loading ? 'none' : 'flex'}>
-                  <Text fontSize={14} color={"white"}>Time:<br /> <span fontSize="24px" color="white">{time} Secs</span></Text>
-                  <Divider orientation={'vertical'} h="20px" />
-                  <Text fontSize={14} color={"white"}>Memory:<br /><span fontSize="24px" color="white">{memory} Mb</span></Text>
-                </HStack>
+              <Box >
                 {error !== null ? (
                   <Box bg="#F0F5FF" w="100%" display={loading ? 'none' : 'block'} alignItems={"center"} p="10px">
                     <Text fontSize={16} color={"white"} fontWeight={'semibold'}>Error : </Text>
@@ -205,11 +226,11 @@ function App() {
                   <></>
                 )}
                 <Text visibility={loading ? 'hidden' : 'visible'} fontSize={24} ml="15px" color={"#0073c7"}>Output </Text>
-                <Box bg="#F0F5FF" w="675px" p="10px" borderLeftRadius={7} borderWidth={2}>
+                <Box bg={'white'} w="675px" p="10px"  borderWidth={2}>
                   {output === null ? (
-                    <Text align={"left"} fontSize={16}>{'No Output'}</Text>
+                    <Text color={'black'} align={"left"} fontSize={16}>{'No Output'}</Text>
                   ) : (
-                    <Text align={"left"} fontSize={16}>
+                    <Text align={"left"} fontSize={16} color={'black'}>
                       {loading ? 'Submission On Queue' : output.split("\n").slice(0, 3).map((line, index) => (
                         <React.Fragment key={index}>
                           {line}
@@ -219,9 +240,7 @@ function App() {
                     </Text>
                   )}
                 </Box>
-                <Box display={"flex"} bg="#24262C" h="50px" w="100%" pt="0px" borderWidth={2} >
-                  <Button bg="#2EC866" color="white" ml="250px" mt="10px" w="150px" h="30px" borderRadius={5}>Submit</Button>
-                </Box>
+              
               </Box>
             ) : (
               <Box bg="#F0F5FF" h="53px" w="676px" mt="30px" pt="0px" display={'flex'} alignItems={'center'} justifyContent={'center'} borderBottomRadius={11} borderWidth={2} borderTopColor={"white"} >
@@ -231,7 +250,7 @@ function App() {
             )}
           </Box>
         </Box>
-      </Grid>
+      </Flex>
     </div>
   );
 }
