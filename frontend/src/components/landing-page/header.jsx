@@ -30,7 +30,7 @@ const Header = () => {
     top: "0",
     
     zIndex: "20", 
-    background:"#F0F5FF"
+    background:"#FFFFFF"
   
   };
   
