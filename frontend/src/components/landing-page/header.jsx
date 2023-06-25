@@ -29,7 +29,7 @@ const Header = () => {
   const boxStyle = {
     pos: "static",
     top: "0",
-    width: "100%",
+    
     zIndex: "20", 
     background:"#F0F5FF"
   
@@ -38,13 +38,14 @@ const Header = () => {
 
   return (
    
-    <Box style={boxStyle} pos={'fixed'}  >
+    <Box style={boxStyle} pos={'fixed'} width='100%'>
       <Flex align="center">
-        {/* Logo */}
-        <HStack alignItems="center" justify="center" width="300px" height="60px" >
+        
+        <Link to={'/'}><HStack alignItems="center" justify="center" width={{md:"300px",base:'100px'}} height="60px" >
+        <Image src={Logo} w={20}/>
         <Text color={'black'} fontSize={24} fontWeight={600}>Code</Text>
         <Text color={'black'} fontSize={24} fontWeight={300}>Extract</Text>
-        </HStack>
+        </HStack></Link>
 
         {/* Search bar */}
       

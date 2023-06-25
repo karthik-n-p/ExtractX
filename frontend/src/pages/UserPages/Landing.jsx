@@ -10,6 +10,7 @@ import { FaArrowDown, FaArrowLeft, FaArrowUp, FaChevronCircleDown, FaSearch } fr
 import { FaArrowRight } from "react-icons/fa";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Logo from '../../assets/logo.png'
 
 import axios from "axios";
 import Landing from "./Landing";
@@ -32,7 +33,7 @@ const ContactForm = () => {
     return (
         <div>
       <Heading color={'black'}>For help mail us:</Heading>
-        <HStack spacing={40}> 
+        <HStack spacing={{base:'5px', md:'200px'}}> 
             <div>
         <Text htmlFor="name" color="#0073c7">Name:</Text>
         <input
@@ -168,8 +169,10 @@ desired outcome</Text>
 </Box>
         <footer>
         <Box bg={'#F0F5FF'} pb={5} >
+        
         <Text color={'black'} align={'center'} fontSize={35}><b>Code</b> Extract</Text> 
-        <HStack ml={110} spacing={10} mt={8} >
+        <HStack ml={110} spacing={{base: '10px', md: '800px'}} mt={8} ><Image src={Logo} w={200}/>
+        <HStack>
             <HStack>
         <Text alignItems={"baseline"} color={'black'}>Contact us</Text>
         <Divider borderColor="#0073c7" orientation="vertical" h={100}/>
@@ -179,7 +182,7 @@ desired outcome</Text>
             <Text>Phone : +91 97781 53547</Text>
             <Text>Email : projectcmp03@gmail.com</Text>
         </VStack>
-        </HStack>
+        </HStack></HStack>
         </Box>
         </footer>
         
