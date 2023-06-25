@@ -22,10 +22,8 @@ const api = process.env.x
 console.log(api);
 
 
-const openaiapi = process.env.OPENAI_API_KEY
-console.log(openaiapi);
 
-//to test tessaract-ocr package getting text from image
+
 
 
 const FormData = require('form-data');
@@ -35,6 +33,7 @@ const fs = require('fs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const multer = require('multer');
+//multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 
 
 // Multer configuration
@@ -84,45 +83,6 @@ app.post('/recognize', upload.single('srcImg'), async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
 // Handle POST requests to /submit-code
 app.post('/submit-code', async (req, res) => {
   const code = req.body.code;
@@ -143,7 +103,7 @@ app.post('/submit-code', async (req, res) => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'X-RapidAPI-Key': api,
+        'X-RapidAPI-Key': aaba41e5bemshb02df24f21d0280p1e96c8jsn173c2c147512,
          'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
       }
     });

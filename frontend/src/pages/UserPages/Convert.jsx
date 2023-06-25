@@ -141,7 +141,7 @@ function Convert() {
       }
       `}
       </style>
-      <Flex w={'100vw'} bg={'#FFFFFF'} h={'100%'} pb={10} justifyContent={'space-around'}>
+      <Flex w={'100vw'} bg={'#FFFFFF'} h={'100vh'} pb={10} justifyContent={'space-around'}>
         <Box bg={'#FFFFFF'} pt={170}>
           <Text fontWeight="semibold" fontSize={50} textAlign='center' color={"black"} lineHeight={"60px"} mb={5}>Upload Image </Text>
           <VStack>
