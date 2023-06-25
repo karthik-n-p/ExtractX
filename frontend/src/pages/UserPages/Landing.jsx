@@ -1,17 +1,18 @@
-import { Box, Button, Divider, Flex, Grid, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Grid, HStack, Heading, IconButton, Image, Input, Text, Textarea, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import computer from '../../assets/Programming-cuate.png'
 import Instruction1 from '../../assets/Image folder-cuate.png'
 import Instruction2 from '../../assets/Image upload-cuate.png'
 import Instruction3 from '../../assets/Code snippets-cuate.png'
 import Instruction4 from '../../assets/Image folder-bro.png'
+import Instruction5 from '../../assets/Mention-cuate.png'
 import Modal from 'react-modal';
 import { Link } from "react-router-dom";
 import Logo from '../../assets/logo.png'
 import { ButtonGroup, Container } from '@chakra-ui/react'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
 
-Modal.setAppElement('#root'); // Set the root element for accessibility
+ // Set the root element for accessibility
 const ContactForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -33,7 +34,7 @@ const ContactForm = () => {
     return (
         <div>
           <Flex w="100%" h="90vh" align={"center"} justify={"center"} gap={15}>
-          <Image src={Instruction5} alt="Image"  h="500px" w="500px" />  
+          <Image src={Instruction5} alt="Image"  h={{base:'350px', md:'500px'}} w={{base:'350px', md:'500px'}} />  
      
         <VStack alignItems={'self-start'} gap={4}> 
         <Heading color={'black'}>Contact Us</Heading>
@@ -193,19 +194,19 @@ const PracQues = () => {
 
         
         <div >
-            <Box bg={"white"}>
+            <Box bg={"white"} pt={50} pl={50}>
     
 
-       <Flex  align={"center"} mr={50} mt={30} >
+        <Grid templateColumns={{ base: '1fr', md: '2fr 2fr' }} mt={30} mr={50} >
 
 <div >
 <Image src={computer} alt="Image" ml={20} mt="-15px" width="80%" height="110%" />  
 
 </div>
-<div  > 
+<div   > 
 
 
-    <Heading fontSize='48px' fontWeight={700} color='black' lineHeight="58px">Execute Your Written Code In Seconds </Heading>
+    <Heading mt={{base: '10px', md:'200px'}} fontSize='48px' fontWeight={700} color='black' lineHeight="58px">Execute Your Written Code In Seconds </Heading>
     <Text fontSize='15px' mt="18px" color='#121316' mr="100px" width={450} lineHeight="26px">Experience Code Extract: Simplify code compilation. Unleash creativity, learn new languages. Transform images into code snippets now!
 </Text>
     <div>
@@ -214,7 +215,8 @@ const PracQues = () => {
       </div>
 
 </div>
-</Flex >
+</Grid>
+
 
 <Text mt={28} align={"center"} fontSize='30px' fontWeight={'bold'} color={"black"}>How to Convert Image Formats</Text>
             <Text mt={2} align={"center"} fontSize='16px'   color={"black"}>With the CodeExtract image format converter, you get a free convenient tool to switch between<br/>
