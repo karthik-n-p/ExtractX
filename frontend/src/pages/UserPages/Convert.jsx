@@ -141,7 +141,7 @@ function Convert() {
       }
       `}
       </style>
-      <Flex w={'100vw'} bg={'#FFFFFF'} h={'100vh'} justifyContent={'space-around'}>
+      <Flex w={'100vw'} bg={'#FFFFFF'} h={'100%'} pb={10} justifyContent={'space-around'}>
         <Box bg={'#FFFFFF'} pt={170}>
           <Text fontWeight="semibold" fontSize={50} textAlign='center' color={"black"} lineHeight={"60px"} mb={5}>Upload Image </Text>
           <VStack>
@@ -203,7 +203,7 @@ function Convert() {
           </VStack>
         </Box>
         <Box  bg={'#FFFFFF'} pt={20}>
-          <Box w="680px" h="580px" borderWidth={3} bg="#F0F5FF" borderColor={"#0073c7"} borderRadius={15} pt={0}>
+          <Box w="680px" h="100%" borderWidth={3} bg="#F0F5FF" borderColor={"#0073c7"} borderRadius={15} pb={5}>
             <Box bg="#F0F5FF" borderBottomColor={"#0073c7"} borderWidth={2} w="676px" h="50px" borderRadius={15} borderBottomRadius={0} pt="5px" p={5} display='flex' justifyContent={"space-between"} alignItems={"center"} >
               <Select placeholder={language} bg={"#F0F5FF"} borderWidth={2} borderColor={"#0073c7"} w="162px" h="31px" display={"flex"} color={"#0073c7"} size={12} value="language" onChange={(e) => setLanguage(e.target.value)} borderRadius={9} >
                 <option value="Java">Java</option>
@@ -219,14 +219,14 @@ function Convert() {
               <Box >
                 {error !== null ? (
                   <Box bg="#F0F5FF" w="100%" display={loading ? 'none' : 'block'} alignItems={"center"} p="10px">
-                    <Text fontSize={16} color={"white"} fontWeight={'semibold'}>Error : </Text>
-                    <Text fontSize={20} color={"white"} ml="10px">{error}</Text>
+                    <Text fontSize={16} color={"black"} fontWeight={'semibold'}>Error : </Text>
+                    <Text fontSize={20} color={"black"} ml="10px">{error}</Text>
                   </Box>
                 ) : (
                   <></>
                 )}
                 <Text visibility={loading ? 'hidden' : 'visible'} fontSize={24} ml="15px" color={"#0073c7"}>Output </Text>
-                <Box bg={'white'} w="675px" p="10px"  borderWidth={2}>
+                <Box bg={'white'} w="675px" h='100%' px={3}  borderWidth={2}>
                   {output === null ? (
                     <Text color={'black'} align={"left"} fontSize={16}>{'No Output'}</Text>
                   ) : (

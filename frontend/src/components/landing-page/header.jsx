@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
+  const navigate = useNavigate();
   const { setIsRegistered } = useContext(AuthContext);
   const { handleSignupSuccess,afterlogout } = useContext(AuthContext);
   const { isRegistered, username } = React.useContext(AuthContext);
@@ -29,6 +30,23 @@ const Header = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const handleLogout = () => {
+   
+    auth
+      .signOut()
+      .then(() => {
+        console.log('Logged out');
+      
+        handleSignupSuccess(null);
+      
+        afterlogout();
+        navigate('/');
+        // Additional logout actions if needed
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const boxStyle = {
     pos: "static",
     top: "0",
@@ -41,23 +59,6 @@ const Header = () => {
   };
 
 
-  const handleLogout = () => {
-    const navigate = useNavigate();
-    auth
-      .signOut()
-      .then(() => {
-        console.log('Logged out');
-      
-        handleSignupSuccess(null);
-        handleToggleDropdown();
-        afterlogout();
-        navigate('/');
-        // Additional logout actions if needed
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
   
 
   return (
@@ -95,8 +96,8 @@ const Header = () => {
           </>
         )}
 
-             {isRegistered&&
-             <Button  w="100px" h="40px" color="white" bg="#0d5fc2" onClick={handleLogout}>
+             {isRegistered &&
+             <Button   color="black" bg='#0073C7' onClick={handleLogout}>
                    Log Out
                  </Button>
 }

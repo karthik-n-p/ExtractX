@@ -11,13 +11,16 @@ import { useNavigate } from 'react-router-dom';
 import { ButtonGroup, Container } from '@chakra-ui/react'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
 
+import { useContext } from 'react';
+import AuthContext from '../../pages/UserPages/AuthContext';
+
  // Set the root element for accessibility
 const ContactForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     
-  
+   
     const handleSubmit = (e) => {
       e.preventDefault();
   
@@ -110,8 +113,9 @@ const ContactForm = () => {
   };
   
  
-
+ 
 const PracQues = () => {
+  const { isRegistered } = React.useContext(AuthContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
@@ -123,67 +127,67 @@ const PracQues = () => {
     setShowLoginPrompt(true);
   };
 
-  const handleModalClose = () => {
-    setShowLoginPrompt(false);
-  };
+  // const handleModalClose = () => {
+  //   setShowLoginPrompt(false);
+  // };
 
-  const renderLoginModal = () => {
-    return (
-      <div
-        style={{
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        background: 'linear-gradient(to right top, #F0F5FF, #0073c7)',
-        width: '400px',
-        padding: '20px',
-        color: '#fff',
-        textAlign: 'center',
-      }}
-      >
-        <h2>Please Log In</h2>
-        <p>Please log in to perform this action.</p>
-        <HStack mt={10} ml={10} spacing={20}>
-        <Link to={'/login'}><button
-          style={{
-            backgroundColor: '#0073c7',
-            color: '#F0F5FF',
-            padding: '10px 20px',
-            border: 'none',
-            cursor: 'pointer',
-            borderRadius: '15px'
+  // const renderLoginModal = () => {
+  //   return (
+  //     <div
+  //       style={{
+  //       position: 'fixed',
+  //       top: '50%',
+  //       left: '50%',
+  //       transform: 'translate(-50%, -50%)',
+  //       background: 'linear-gradient(to right top, #F0F5FF, #0073c7)',
+  //       width: '400px',
+  //       padding: '20px',
+  //       color: '#fff',
+  //       textAlign: 'center',
+  //     }}
+  //     >
+  //       <h2>Please Log In</h2>
+  //       <p>Please log in to perform this action.</p>
+  //       <HStack mt={10} ml={10} spacing={20}>
+  //       <Link to={'/login'}><button
+  //         style={{
+  //           backgroundColor: '#0073c7',
+  //           color: '#F0F5FF',
+  //           padding: '10px 20px',
+  //           border: 'none',
+  //           cursor: 'pointer',
+  //           borderRadius: '15px'
 
-          }}
-          onClick={handleModalClose}
-        >
-          <b>Log In</b>
-        </button>
-        </Link> 
-        <button
-          style={{
-            backgroundColor: '#0073c7',
-            color: '#F0F5FF',
-            padding: '10px 20px',
-            border: 'none',
-            cursor: 'pointer',
-            borderRadius: '15px'
+  //         }}
+  //         onClick={handleModalClose}
+  //       >
+  //         <b>Log In</b>
+  //       </button>
+  //       </Link> 
+  //       <button
+  //         style={{
+  //           backgroundColor: '#0073c7',
+  //           color: '#F0F5FF',
+  //           padding: '10px 20px',
+  //           border: 'none',
+  //           cursor: 'pointer',
+  //           borderRadius: '15px'
 
-          }}
-          onClick={handleModalClose}
-        >
-          <b>Close</b>
-        </button>
-        </HStack>
-      </div>
-    );
-  };
-
+  //         }}
+  //         onClick={handleModalClose}
+  //       >
+  //         <b>Close</b>
+  //       </button>
+  //       </HStack>
+  //     </div>
+  //   );
+  // };
+  const navigate = useNavigate();
   const handleAction = () => {
-    if (isLoggedIn) {
-      handleButtonClick();
+    if (isRegistered) {
+      navigate('/convert')
     } else {
-      handleLoginPrompt();
+      navigate('/signup')
     }
   };
     
@@ -209,7 +213,7 @@ const PracQues = () => {
 </Text>
     <div>
       <Button colorScheme="facebook" h="48px" w="190px" mt={2} color={"white"} bg="#0073C7" onClick={handleAction}>Upload</Button>
-      {showLoginPrompt && renderLoginModal()}
+     
       </div>
 
 </div>
@@ -238,7 +242,7 @@ desired outcome</Text>
 
 </div>
 <div  > 
-
+  
     <Text fontSize='28px' fontWeight={'semibold'} color='black' ml={0}>2. Upload</Text>
     <Text fontSize='16+px' color='black'ml={0}>After get started click on the "Upload Image"<br/> button to select the image containing the handwritten <br/>code you want to compile or just drag and drop your image there
 </Text>
