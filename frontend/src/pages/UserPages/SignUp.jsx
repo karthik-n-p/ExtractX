@@ -118,7 +118,7 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
       <Input placeholder="Email" w="350px" h="45px" color={"#0073c7"} bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterEmail(event.target.value)}} />
       <Text mt="10px" color={"#0073c7"}>Password</Text>
       <Input placeholder="Password" w="350px" h="45px" color={"#0073c7"} bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterPassword(event.target.value)}}  />
-      <Button w="350px" h="45px" color="white" borderRadius="4px" mt="20px" bg="#0073c7" onClick={register}>Sign Up</Button>
+      <Button w="350px" h="45px" colorScheme='blue' color="white" borderRadius="4px" mt="20px" bg="#0073c7" onClick={register}>Sign Up</Button>
 
     
 

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Flex, Spacer, IconButton, Input, InputGroup, InputRightElement, Circle, useColorMode, Avatar, Button, HStack, Image, Heading, Text } from '@chakra-ui/react';
-import { FaArrowDown, FaBell, FaChevronDown, FaSearch, FaSortDown, FaSun, FaUser } from 'react-icons/fa';
+import { Box, Flex, Spacer, IconButton, useColorMode, Button, HStack, Image, Text } from '@chakra-ui/react';
+import { FaChevronDown, FaUser } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
-import { useEffect } from 'react';
+
 import { useContext } from 'react';
 import AuthContext from '../../pages/UserPages/AuthContext';
-import { MdArrowDropDown, MdOutlineArrowDropDown, MdPinDrop } from 'react-icons/md';
 import ProfileSection from '../signup-page/Dropdown';
 
 
@@ -95,7 +94,7 @@ const Header = () => {
                   >
                     {username}
                   </Text>
-                  <FaChevronDown size="15px" color="#808191" />
+                  
            
                  
                 </Flex>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Box, Button, Divider, Flex, EditableTextarea, HStack, Input, Select, Spacer, Text, Textarea, VStack, Grid, Image, Spinner } from "@chakra-ui/react";
-import { FaAngleDown, FaArrowAltCircleDown, FaCaretDown, FaCopy, FaDropbox, FaFileDownload, FaRegArrowAltCircleDown, FaSortDown, FaSun } from "react-icons/fa";
+import { Box, Button, Divider, Flex, HStack, Input, Select, Text, Textarea, VStack, Grid, Image } from "@chakra-ui/react";
+
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -18,6 +18,26 @@ function App() {
   const [error, setError] = useState('');
   const [loading1, setloading1] = useState(false);
   const [Isthereiscode, setIsthereiscode] = useState(false);
+
+
+  function getLanguageId(language) {
+    console.log("Language is ",language);
+    // Map language to language ID
+    switch (language) {
+      case "Java":
+        return 62;
+      case "Python":
+        return 70;
+      case "C++":
+        return 54;
+      case "Js":
+        return 63;
+      case "C":
+        return 50;
+      default:
+        return 50; // Default to C++
+    }
+  }
 
   const handleImageUpload = (event) => {
     setSelectedImage(event.target.files[0]);
@@ -126,8 +146,8 @@ function App() {
       }
       `}
       </style>
-      <Grid templateColumns={{ base: '1fr', md: '3fr 3fr' }} rowGap={10}>
-        <Box height={"100vh"} bg={'#FFFFFF'} pt={200}>
+      <Grid templateColumns={{ base: '1fr', md: '3fr 3fr' }} rowGap={0}>
+        <Box  bg={'#FFFFFF'} pt={200}>
           <Text fontWeight="semibold" fontSize={60} textAlign='center' color={"#0073c7"} >Extract Code</Text>
           <Text fontWeight="semibold" fontSize={60} textAlign='center' color={"#0073c7"} mt={-5} >from Image</Text>
           <VStack>
@@ -141,9 +161,11 @@ function App() {
               <Button
                 colorScheme="blue"
                 cursor={'pointer'}
-                bg="brand.100"
+                bg="#0073c7"
                 as="label"
                 htmlFor="imageUpload"
+                borderRadius={20}
+                color={'white'}
                 mb={4}
                 pt={2}
                 display="block"
@@ -164,7 +186,9 @@ function App() {
             </Box>
             <Button
               colorScheme="blue"
-              bg="brand.100"
+              bg="#0073c7"
+              color={'white'}
+              borderRadius={20}
               onClick={handleImageRecognition}
               disabled={!selectedImage || loading}
             >
@@ -173,19 +197,19 @@ function App() {
             {loading && <p>Loading...</p>}
           </VStack>
         </Box>
-        <Box height={"100vh"} bg={'#FFFFFF'} pt={20}>
-          <Box w="680px" borderWidth={3} bg="#F0F5FF" borderColor={"#0073c7"} borderRadius={15} pt={0}>
-            <Box bg="#F0F5FF" borderBottomColor={"#0073c7"} borderWidth={2} w="676px" h="50px" borderRadius={15} borderBottomRadius={0} pt="5px" p={5} display='flex' justifyContent={"space-between"} alignItems={"center"} >
-              <Select placeholder={language} bg={"#F0F5FF"} borderWidth={2} borderColor={"#0073c7"} w="162px" h="31px" display={"flex"} color={"#0073c7"} size={12} value="language" onChange={(e) => setLanguage(e.target.value)} borderRadius={9} >
+        <Box height={"100vh"} bg={'#FFFFFF'} pt={20} pl={10}>
+          <Box w="680px" borderWidth={3} bg="linear-gradient(to right top, #F0F5FF, #0073c7)" borderColor={"#0073c7"} borderRadius={15} pt={0}>
+            <Box bg="linear-gradient(to right top, #80b8e5, #0073c7)" borderBottomColor={"#F0F5FF"} borderWidth={2} w="676px" h="50px" borderRadius={15} borderBottomRadius={0} pt="5px" p={5} display='flex' justifyContent={"space-between"} alignItems={"center"} >
+              <Select placeholder={language} bg={"#0073c7"} borderWidth={2} borderColor={"#F0F5FF"} w="162px" h="31px" display={"flex"} color={"white"} size={12} value="language" onChange={(e) => setLanguage(e.target.value)} borderRadius={9} >
                 <option value="Java">Java</option>
                 <option value="Python">Python</option>
                 <option value="C++">C++</option>
                 <option value="Js">JS</option>
                 <option value="C">C</option>
               </Select>
-              <Button h="30px" bg="#0073c7" borderRadius={4} color="white" onClick={handleSubmitCode}>Run</Button>
+              <Button h="30px" bg="#F0F5FF" borderRadius={4} color="#0073c7" onClick={handleSubmitCode}>Run</Button>
             </Box>
-            <Textarea style={{ scrollbarColor: 'blue' }} color={"#0073c7"} bg={"white"} borderColor={"white"} borderRadius={30} borderWidth={2} value={code} placeholder="Enter Your Code Here" onChange={(event) => { setCode(event.target.value) }} h="450px" w="650px" margin="10px" />
+            <Textarea style={{ scrollbarColor: 'blue' }} color={"#0073c7"} bg="linear-gradient(to left bottom, #C9D9EA, #F0F5FF)" borderColor={"white"} borderRadius={30} borderWidth={2} value={code} placeholder="Enter Your Code Here" onChange={(event) => { setCode(event.target.value) }} h="450px" w="650px" margin="10px" />
             {Isthereiscode ? (
               <Box>
                 <Box bg="#F0F5FF" w="650px" margin="10px" display={loading ? 'none' : 'block'} alignItems={"center"} p="10px">
@@ -224,8 +248,8 @@ function App() {
                 </Box>
               </Box>
             ) : (
-              <Box bg="#F0F5FF" h="53px" w="676px" mt="30px" pt="0px" display={'flex'} alignItems={'center'} justifyContent={'center'} borderBottomRadius={11} borderWidth={2} borderTopColor={"white"} >
-                <Text color={'black'}>Scan the image and press run</Text>
+              <Box bg="'linear-gradient(to right top, #deebfb, #0073c7)'" h="53px" w="676px" mt="30px" pt="0px" display={'flex'} alignItems={'center'} justifyContent={'center'} borderBottomRadius={11} borderWidth={2} borderTopColor={"white"} >
+                <Text color={'#F0F5FF'}>Scan the image and press run</Text>
                
               </Box>
             )}

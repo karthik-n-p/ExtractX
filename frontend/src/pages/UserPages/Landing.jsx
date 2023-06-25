@@ -1,23 +1,25 @@
-import { Box, Button, Divider, Flex, Grid, HStack, Heading, IconButton, Image, Input, InputGroup, InputLeftElement, Radio, RadioGroup, Select, Spacer, Stack, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Grid, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import computer from '../../assets/Programming-cuate.png'
 import Instruction1 from '../../assets/Image folder-cuate.png'
 import Instruction2 from '../../assets/Image upload-cuate.png'
 import Instruction3 from '../../assets/Code snippets-cuate.png'
 import Instruction4 from '../../assets/Image folder-bro.png'
-import { useEffect } from "react";
-import { FaArrowDown, FaArrowLeft, FaArrowUp, FaChevronCircleDown, FaSearch } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import Modal from 'react-modal';
 import { Link } from "react-router-dom";
 import Logo from '../../assets/logo.png'
 
-import axios from "axios";
-import Landing from "./Landing";
+Modal.setAppElement('#root'); // Set the root element for accessibility
+
+
+
+
+
 const ContactForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    
   
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -74,6 +76,80 @@ const ContactForm = () => {
  
 
 const PracQues = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+
+  const handleButtonClick = () => {
+    window.location.href = '/convert';
+  };
+
+  const handleLoginPrompt = () => {
+    setShowLoginPrompt(true);
+  };
+
+  const handleModalClose = () => {
+    setShowLoginPrompt(false);
+  };
+
+  const renderLoginModal = () => {
+    return (
+      <div
+        style={{
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        background: 'linear-gradient(to right top, #F0F5FF, #0073c7)',
+        width: '400px',
+        padding: '20px',
+        color: '#fff',
+        textAlign: 'center',
+      }}
+      >
+        <h2>Please Log In</h2>
+        <p>Please log in to perform this action.</p>
+        <HStack mt={10} ml={10} spacing={20}>
+        <Link to={'/login'}><button
+          style={{
+            backgroundColor: '#0073c7',
+            color: '#F0F5FF',
+            padding: '10px 20px',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '15px'
+
+          }}
+          onClick={handleModalClose}
+        >
+          <b>Log In</b>
+        </button>
+        </Link> 
+        <button
+          style={{
+            backgroundColor: '#0073c7',
+            color: '#F0F5FF',
+            padding: '10px 20px',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '15px'
+
+          }}
+          onClick={handleModalClose}
+        >
+          <b>Close</b>
+        </button>
+        </HStack>
+      </div>
+    );
+  };
+
+  const handleAction = () => {
+    if (isLoggedIn) {
+      handleButtonClick();
+    } else {
+      handleLoginPrompt();
+    }
+  };
     
     
     return (
@@ -93,9 +169,10 @@ const PracQues = () => {
     <Heading fontSize='48px' fontWeight={700} color='black' lineHeight="58px">Exececute Your Written Code In Seconds </Heading>
     <Text fontSize='15px' mt="18px" color='#121316' mr="100px" width={450} lineHeight="26px">Experience the power of Code Extract today and simplify your handwritten code compilation process. Unlock your creativity, learn new programming languages, and unleash the potential of your handwritten code with ease. Start transforming your images into functional code snippets now!
 </Text>
-    <Link to={"/login"} >
-      <Button colorScheme="facebook" h="48px" w="190px" mt={2} color={"white"} bg="#0073C7">Upload</Button>
-    </Link>
+    <div>
+      <Button colorScheme="facebook" h="48px" w="190px" mt={2} color={"white"} bg="#0073C7" onClick={handleAction}>Upload</Button>
+      {showLoginPrompt && renderLoginModal()}
+      </div>
 
 </div>
 </Grid >
