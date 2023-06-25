@@ -4,7 +4,7 @@ import { Box, Button, Divider, Flex, EditableTextarea, HStack, Input, Select, Sp
 import { FaAngleDown, FaArrowAltCircleDown, FaCaretDown, FaCopy, FaDropbox, FaFileDownload, FaRegArrowAltCircleDown, FaSortDown, FaSun, FaUpload } from "react-icons/fa";
 import Instruction1 from '../../assets/Image folder-cuate.png'
             
-function App() {
+function Convert() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState('');
@@ -255,4 +255,4 @@ function App() {
   );
 }
 
-export default App;
+export default Convert;

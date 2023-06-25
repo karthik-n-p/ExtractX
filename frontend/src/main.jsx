@@ -6,10 +6,11 @@ import SignUpPage from './pages/UserPages/SignUp';
 import AuthContext from './pages/UserPages/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, firestore } from './pages/UserPages/firebase-auth';
-import QuestionPage from './pages/UserPages/Question';
+import Convert from './pages/UserPages/Convert';
 import { Box, ChakraProvider } from '@chakra-ui/react';
 
 import Landing from './pages/UserPages/Landing';
+
 
 import Header from './components/landing-page/header';
 
@@ -18,6 +19,7 @@ import Header from './components/landing-page/header';
 
 
 import { extendTheme } from '@chakra-ui/react';
+
 
 
 const theme = extendTheme({
@@ -109,7 +111,7 @@ const App = () => {
             </div>
         
             <Routes>
-              <Route path='/convert' element={<QuestionPage />} />
+              <Route path='/convert' element={<Convert />} />
               <Route path="/" element={<Landing />} />
               <Route path='/login' element={<LoginPage handleSignupSuccess={handleSignupSuccess}/>}/>
               <Route path="/signup" element={<SignUpPage handleSignupSuccess={handleSignupSuccess} />} />

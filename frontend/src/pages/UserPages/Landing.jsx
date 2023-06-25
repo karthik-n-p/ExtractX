@@ -1,23 +1,17 @@
-import { Box, Button, Divider, Flex, Grid, HStack, Heading, IconButton, Image, Input, InputGroup, InputLeftElement, Radio, RadioGroup, Select, Spacer, Stack, Text, Textarea, VStack } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Grid, HStack, Heading, IconButton, Image, Input, Text, Textarea, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
-import computer from '../../assets/Programming-cuate.png'
+import computer from '../../assets/Programming-cuate (2).png'
 import Instruction1 from '../../assets/Image folder-cuate.png'
 import Instruction2 from '../../assets/Image upload-cuate.png'
 import Instruction3 from '../../assets/Code snippets-cuate.png'
 import Instruction5 from '../../assets/Mention-cuate.png'
-import { useEffect } from "react";
-import { FaArrowDown, FaArrowLeft, FaArrowUp, FaChevronCircleDown, FaSearch } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { ButtonGroup, Container } from '@chakra-ui/react'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
 
-
-
-import axios from "axios";
-import Landing from "./Landing";
+ // Set the root element for accessibility
 const ContactForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -38,7 +32,7 @@ const ContactForm = () => {
     return (
         <div>
           <Flex w="100%" h="90vh" align={"center"} justify={"center"} gap={15}>
-          <Image src={Instruction5} alt="Image"  h="500px" w="500px" />  
+          <Image src={Instruction5} alt="Image"  h={{base:'350px', md:'500px'}} w={{base:'350px', md:'500px'}} />  
      
         <VStack alignItems={'self-start'} gap={4}> 
         <Heading color={'black'}>Contact Us</Heading>
@@ -118,33 +112,109 @@ const ContactForm = () => {
  
 
 const PracQues = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+
+  const handleButtonClick = () => {
+    window.location.href = '/convert';
+  };
+
+  const handleLoginPrompt = () => {
+    setShowLoginPrompt(true);
+  };
+
+  const handleModalClose = () => {
+    setShowLoginPrompt(false);
+  };
+
+  const renderLoginModal = () => {
+    return (
+      <div
+        style={{
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        background: 'linear-gradient(to right top, #F0F5FF, #0073c7)',
+        width: '400px',
+        padding: '20px',
+        color: '#fff',
+        textAlign: 'center',
+      }}
+      >
+        <h2>Please Log In</h2>
+        <p>Please log in to perform this action.</p>
+        <HStack mt={10} ml={10} spacing={20}>
+        <Link to={'/login'}><button
+          style={{
+            backgroundColor: '#0073c7',
+            color: '#F0F5FF',
+            padding: '10px 20px',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '15px'
+
+          }}
+          onClick={handleModalClose}
+        >
+          <b>Log In</b>
+        </button>
+        </Link> 
+        <button
+          style={{
+            backgroundColor: '#0073c7',
+            color: '#F0F5FF',
+            padding: '10px 20px',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '15px'
+
+          }}
+          onClick={handleModalClose}
+        >
+          <b>Close</b>
+        </button>
+        </HStack>
+      </div>
+    );
+  };
+
+  const handleAction = () => {
+    if (isLoggedIn) {
+      handleButtonClick();
+    } else {
+      handleLoginPrompt();
+    }
+  };
     
     
     return (
 
         
         <div >
-            <Box bg={"white"}>
+            <Box bg={"white"} pt={50} >
     
 
-       <Flex  align={"center"} mr={50} mt={30} >
+        <Grid templateColumns={{ base: '1fr', md: '2fr 2fr' }} mt={30} mr={50} >
 
 <div >
 <Image src={computer} alt="Image" ml={20} mt="-15px" width="80%" height="110%" />  
 
 </div>
-<div  > 
+<div   > 
 
 
-    <Heading fontSize='48px' fontWeight={700} color='black' lineHeight="58px">Execute Your Written Code In Seconds </Heading>
+    <Heading mt={{base: '10px', md:'200px'}} fontSize='48px' fontWeight={700} color='black' lineHeight="58px">Execute Your Written Code In Seconds </Heading>
     <Text fontSize='15px' mt="18px" color='#121316' mr="100px" width={450} lineHeight="26px">Experience Code Extract: Simplify code compilation. Unleash creativity, learn new languages. Transform images into code snippets now!
 </Text>
-    <Link to={"/signup"} >
-      <Button colorScheme="facebook" h="48px" w="190px" mt={2} color={"white"} bg="#0073C7">Upload</Button>
-    </Link>
+    <div>
+      <Button colorScheme="facebook" h="48px" w="190px" mt={2} color={"white"} bg="#0073C7" onClick={handleAction}>Upload</Button>
+      {showLoginPrompt && renderLoginModal()}
+      </div>
 
 </div>
-</Flex >
+</Grid>
+
 
 <Text mt={28} align={"center"} fontSize='30px' fontWeight={'bold'} color={"black"}>How to Convert Image Formats</Text>
             <Text mt={2} align={"center"} fontSize='16px'   color={"black"}>With the CodeExtract image format converter, you get a free convenient tool to switch between<br/>
@@ -236,7 +306,6 @@ desired outcome</Text>
       </Text>
 
   </Box>
-       
         
         </Box>
        </div>
