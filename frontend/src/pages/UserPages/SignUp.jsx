@@ -4,11 +4,6 @@ import  { Box, Flex,Divider, Spacer, IconButton, Input, InputGroup, InputRightEl
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { auth,firestore } from './firebase-auth';
 import { useNavigate } from 'react-router-dom';
-
-
-import { doc, setDoc,getDoc } from 'firebase/firestore';
-
-
 const SignUpPage = ({ handleSignupSuccess }) =>  {
     const [registerEmail, setRegisterEmail] = React.useState("")
     const [registerPassword ,setRegisterPassword] = React.useState("")
@@ -117,7 +112,7 @@ const SignUpPage = ({ handleSignupSuccess }) =>  {
       <Text mt="10px" color={"#0073c7"}>Email</Text>
       <Input placeholder="Email" w="350px" h="45px" color={"#0073c7"} bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterEmail(event.target.value)}} />
       <Text mt="10px" color={"#0073c7"}>Password</Text>
-      <Input placeholder="Password" w="350px" h="45px" color={"#0073c7"} bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterPassword(event.target.value)}}  />
+      <Input type="password" placeholder="Password" w="350px" h="45px" color={"#0073c7"} bg="#F0F5FF" borderRadius="4px" mt="10px" onChange={(event) => {setRegisterPassword(event.target.value)}}  />
       <Button w="350px" h="45px" colorScheme='blue' color="white" borderRadius="4px" mt="20px" bg="#0073c7" onClick={register}>Sign Up</Button>
 
     

@@ -75,8 +75,7 @@ function Convert() {
     axios.post('http://localhost:3000/submit-code', {
       code: code,
       languageId: getLanguageId(language),
-      stdin: custominput,
-      expectedOutput: outputFormat,
+ 
     })
       .then(response => {
         console.log(response.data);
@@ -141,7 +140,7 @@ function Convert() {
       }
       `}
       </style>
-      <Flex w={'100vw'} bg={'#FFFFFF'} h={'100vh'} pb={10} justifyContent={'space-around'}>
+      <Flex w={'100vw'} bg={'#FFFFFF'} h={'100%'} pb={10} justifyContent={'space-around'}>
         <Box bg={'#FFFFFF'} pt={170}>
           <Text fontWeight="semibold" fontSize={50} textAlign='center' color={"black"} lineHeight={"60px"} mb={5}>Upload Image </Text>
           <VStack>

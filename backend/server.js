@@ -73,7 +73,6 @@ app.post('/recognize', upload.single('srcImg'), async (req, res) => {
 
     const response = await axios.request(options);
     console.log(JSON.stringify(response.data.value));
-
     res.json(response.data.value); // Send the response from the API back to the frontend
   } catch (error) {
     console.error(error);
@@ -87,18 +86,14 @@ app.post('/recognize', upload.single('srcImg'), async (req, res) => {
 app.post('/submit-code', async (req, res) => {
   const code = req.body.code;
   const languageId = req.body.languageId;
-  const stdin = req.body.stdin;
-  const expectedOutput = req.body.expectedOutput;
-  console.log("Input",stdin);
-  console.log("Expected Output",expectedOutput);
+  
 
   try {
     // Make a POST request to Judge0 API
     const response = await axios.post('https://judge0.p.rapidapi.com/submissions', {
       source_code: code,
       language_id: languageId, // Replace with the language ID of the code you're submitting
-      stdin: stdin,
-      expected_output: expectedOutput
+   
 
     }, {
       headers: {
@@ -153,38 +148,6 @@ app.get('/submission/:submissionId', async (req, res) => {
 
 
 
-
- //post request to store user profile data in users collection by user id includes profile url, skills ,social links
- app.post('/profile/:uid', async (req, res) => {
-  const { uid } = req.params;
-  const { profileUrl, skills, socialLinks } = req.body;
-  try {
-    await admin.firestore().collection('userprofile').doc(uid).set({
-      profileUrl,
-      skills,
-      socialLinks
-    });
-    res.status(200).json({ message: 'Profile updated successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Something went wrong' });
-  }
-
-
-  //get request to get user profile data from users collection by user id
-  app.get('/profile/:uid', async (req, res) => {
-    const { uid } = req.params;
-    try {
-      const userProfile = await admin.firestore().collection('userprofile').doc(uid).get();
-      res.status(200).json({ userProfile: userProfile.data() });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Something went wrong' });
-    }
-  }
-  );
-  
-});
 
 
 

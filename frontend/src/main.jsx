@@ -19,6 +19,7 @@ import Header from './components/landing-page/header';
 
 
 import { extendTheme } from '@chakra-ui/react';
+import './index.css';
 
 
 
@@ -106,9 +107,13 @@ const App = () => {
       >
         <BrowserRouter>
           <ChakraProvider theme={theme}>
-            <div>
-              <Header/>
-            </div>
+           {/* The header component is rendered on every page * and all other elements should be rendered below it */}
+            <Header />
+            <Box pos={'relative'} mt={'20'}>
+
+              
+           
+        
         
             <Routes>
               <Route path='/convert' element={<Convert />} />
@@ -117,6 +122,7 @@ const App = () => {
               <Route path="/signup" element={<SignUpPage handleSignupSuccess={handleSignupSuccess} />} />
              
             </Routes>
+            </Box>
           </ChakraProvider>
         </BrowserRouter>
       </AuthContext.Provider>

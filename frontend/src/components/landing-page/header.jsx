@@ -63,7 +63,7 @@ const Header = () => {
 
   return (
    
-    <Box style={boxStyle} pos={'fixed'} width='100%' >
+    <Box style={boxStyle} pos={'fixed'} width='100%'  >
       <Flex align="center">
         
         <Link to={'/'}><HStack alignItems="center" justify="center" width={{md:"300px",base:'100px'}} height="60px" >
